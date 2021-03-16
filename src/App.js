@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import ProductList from "./Components/ProductList/ProductList";
+import Navbar from "./Components/Navbar/Navbar";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import styled from "styled-components";
 
-function App() {
+const Container = styled.div`
+  padding: 1.25rem;
+`;
+
+const NavContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Router>
+        <NavContainer>
+          <Navbar />
+        </NavContainer>
+
+        <Container>
+          <Switch>
+            <Route path="/dashboard"></Route>
+            <Route path="/products">
+              <ProductList />
+            </Route>
+            <Route path="/"></Route>
+          </Switch>
+        </Container>
+      </Router>
+    </Container>
   );
-}
+};
 
 export default App;
